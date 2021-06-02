@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IspitRepository extends JpaRepository<Ispit, Long> {
+public interface    IspitRepository extends JpaRepository<Ispit, Long> {
     public List<Ispit> getAllByPredmet(Predmet predmet);
     public List<Ispit> getAllByRokAndPredmet(IspitniRok rok, Predmet predmet);
 }
