@@ -48,7 +48,7 @@ public class IspitniRokController {
         return new ResponseEntity<IspitniRokDTO>(new IspitniRokDTO(ispitniRok), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}", consumes = "application/json")
+    @PutMapping(value = "/update/{id}", consumes = "application/json")
     public ResponseEntity<IspitniRokDTO> update(@PathVariable("id") Long id, @RequestBody IspitniRokDTO ispitniRokDTO){
         IspitniRok ispitniRok = ispitniRokService.getOne(id);
         if (ispitniRok == null) {
@@ -62,7 +62,7 @@ public class IspitniRokController {
         }
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id){
         IspitniRok ispitniRok = ispitniRokService.getOne(id);
         if (ispitniRok == null) {
