@@ -21,7 +21,7 @@ public class UplataStudenta {
     private Date datum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "studentId", referencedColumnName = "id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
     @Column(name = "obrisan")

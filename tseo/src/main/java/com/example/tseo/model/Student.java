@@ -30,7 +30,7 @@ public class Student implements Serializable {
     private String mestoStanovanja;
     private String smer;
 
-    @Column(name = "brIndeksa")
+    @Column(name = "br_indeksa")
     private String brIndeksa;
 
     @OneToMany(mappedBy = "student")
