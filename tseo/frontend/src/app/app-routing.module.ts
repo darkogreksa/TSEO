@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NastavnikComponent } from './nastavnik/nastavnik.component';
+import { PrijavaIspitaComponent } from './prijava-ispita/prijava-ispita.component';
 
 const routes: Routes = [
-  { path: "/api/nastavnik/all", component: NastavnikComponent}
+  {
+  path: "nastavnik",
+  component: NastavnikComponent
+},
+{
+  path: "prijava-ispita",
+  component: PrijavaIspitaComponent
+},
 ];
 
 @NgModule({

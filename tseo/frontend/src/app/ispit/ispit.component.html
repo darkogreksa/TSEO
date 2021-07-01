@@ -1,1 +1,46 @@
-<p>ispit works!</p>
+<h4 class="display-4 text-center">Ispiti</h4>
+<div class="row  mt-3 mb-3">
+  <button class="btn btn-success btn-lg ml-4" [routerLink]="['/ispit/add']">
+    <i class="fa fa-plus"></i>Dodaj ispit
+  </button>
+</div>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Naziv predmeta</th>
+      <th>Ispitni rok</th>
+      <th>Ucionica</th>
+      <th>Datum</th>
+      <th>Obrisati</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ispit of ispiti">
+      <th scope="row">{{ ispit.id }}</th>
+      <td>{{ ispit.predmet.naziv }}</td>
+      <td>{{ ispit.ispitniRok.naziv }}</td>
+      <td>{{ ispit.ucionica }}</td>
+      <td>{{ ispit.datum }}</td>
+      <td>
+        <button (click)="obrisiIspit(ispit.id)" class="btn btn-danger">
+          Obrisi ispit
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="row d-flex justify-content-center">
+  <pagination
+    *ngIf="ispitPage.totalElements > ispitPage.size"
+    [boundaryLinks]="true"
+    [itemsPerPage]="ispitPage.size"
+    [totalItems]="ispitPage.totalElements"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+  >
+  </pagination>
+</div>

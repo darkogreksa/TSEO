@@ -14,6 +14,7 @@ import { NastavnikComponent } from './nastavnik/nastavnik.component';
 import { PredmetComponent } from './predmet/predmet.component';
 import { PrijavaIspitaComponent } from './prijava-ispita/prijava-ispita.component';
 import { IspitComponent } from './ispit/ispit.component';
+import { StudentService } from './service/student.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { IspitComponent } from './ispit/ispit.component';
     PaginationModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],
-  providers: [NastavnikService],
+  providers: [NastavnikService, StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
