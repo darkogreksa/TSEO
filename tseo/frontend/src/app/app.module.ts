@@ -11,11 +11,17 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { NastavnikService } from './service/nastavnik.service';
 import { NastavnikComponent } from './nastavnik/nastavnik.component';
+import { PredmetComponent } from './predmet/predmet.component';
+import { PrijavaIspitaComponent } from './prijava-ispita/prijava-ispita.component';
+import { IspitComponent } from './ispit/ispit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NastavnikComponent
+    NastavnikComponent,
+    PredmetComponent,
+    PrijavaIspitaComponent,
+    IspitComponent
   ],
   imports: [
     BrowserModule,
