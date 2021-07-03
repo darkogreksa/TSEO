@@ -1,6 +1,8 @@
 package com.example.tseo.service;
 
-import com.example.tseo.model.Nastavnik;
+import com.example.tseo.dto.IspitZaNastavnikaDTO;
+import com.example.tseo.dto.IspitZaOcenjivanjeDTO;
+import com.example.tseo.model.*;
 import com.example.tseo.repository.IspitniRokRepository;
 import com.example.tseo.repository.NastavnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,98 @@ public class NastavnikService {
 
     public void delete(Nastavnik n) {
         nastavnikRepository.delete(n);
+    }
+
+    public List<IspitZaNastavnikaDTO> getIspitiZaOcenjivanjeSviRokovi(Nastavnik nastavnik) {
+        //dobavlja predmete koje nastavnik izvodi,
+        //dodati proveru da li se datum izvedbe poklapa sa datumom ispita ili roka??
+        List<Predmet> predmeti = new ArrayList<>();
+        List<IzvedbaPredmeta> izvedbe = new ArrayList<>();
+        List<PredavanjePredmeta> predavanja = nastavnik.getPredaje();
+        for (PredavanjePredmeta p : predavanja) {
+            IzvedbaPredmeta izvedba = p.getIzvedba();
+            izvedbe.add(izvedba);
+            predmeti.add(izvedba.getPredmet());
+        }
+
+        //trazi ispite za predmete koje nastavnik predaje
+        List<IspitZaNastavnikaDTO> ispitiSaPridruzenimPredmetKolonama = new ArrayList<IspitZaNastavnikaDTO>();
+        for (Predmet p : predmeti) {
+            List<Ispit> ispitiZaPredmet = new ArrayList<Ispit>();
+            for (Ispit isp : p.getIspiti()) {
+                //filtriranje po unetom roku
+
+                // ako nekom nije uneta ocena, tj. "polozio" nije niti true niti false, već null
+                // -> dodaj taj ispit u listu
+                boolean imaNeocenjenih = false;
+                for (IzlazakNaIspit izl : isp.getIzlasci()) {
+                    if (izl.getPolozio() == null) {
+                        imaNeocenjenih = true;
+                        break;
+                    }
+                }
+                if (imaNeocenjenih) {
+                    ispitiZaPredmet.add(isp);
+
+                    // izdvojiti u neku mapper klasu
+                    IspitZaNastavnikaDTO ispDTO = new IspitZaNastavnikaDTO(isp);
+
+
+                    ispitiSaPridruzenimPredmetKolonama.add(ispDTO);
+                }
+
+            }
+        }
+        return ispitiSaPridruzenimPredmetKolonama;
+    }
+
+    public List<IspitZaOcenjivanjeDTO> getIspitiZaOcenjivanje(Nastavnik nastavnik, IspitniRok rok) {
+        //dobavlja predmete koje nastavnik izvodi,
+        //dodati proveru da li se datum izvedbe poklapa sa datumom ispita ili roka??
+        List<Predmet> predmeti = new ArrayList<>();
+        List<IzvedbaPredmeta> izvedbe = new ArrayList<>();
+        List<PredavanjePredmeta> predavanja = nastavnik.getPredaje();
+        for (PredavanjePredmeta p : predavanja) {
+            IzvedbaPredmeta izvedba = p.getIzvedba();
+            izvedbe.add(izvedba);
+            predmeti.add(izvedba.getPredmet());
+        }
+
+        //trazi ispite za predmete koje nastavnik predaje
+        List<IspitZaOcenjivanjeDTO> ispitiSaPridruzenimPredmetKolonama = new ArrayList<IspitZaOcenjivanjeDTO>();
+        for (Predmet p : predmeti) {
+            List<Ispit> ispitiZaPredmet = new ArrayList<Ispit>();
+            for (Ispit isp : p.getIspiti()) {
+                //filtriranje po unetom roku
+                if (isp.getRok() == rok) {
+
+                    // ako nekom nije uneta ocena, tj. "polozio" nije niti true niti false, već null
+                    // -> dodaj taj ispit u listu
+                    boolean imaNeocenjenih = false;
+                    for (IzlazakNaIspit izl : isp.getIzlasci()) {
+                        if (izl.getPolozio() == null) {
+                            imaNeocenjenih = true;
+                            break;
+                        }
+                    }
+                    if (imaNeocenjenih) {
+                        ispitiZaPredmet.add(isp);
+
+                        // izdvojiti u neku mapper klasu
+                        IspitZaOcenjivanjeDTO ispDTO = new IspitZaOcenjivanjeDTO();
+                        ispDTO.setIdIspit(isp.getId());
+                        ispDTO.setIdPredmet(p.getId());
+                        ispDTO.setDatum(isp.getDatum());
+                        ispDTO.setSifra(p.getSifraPredmeta());
+                        ispDTO.setNaziv(p.getNaziv());
+                        ispDTO.setVrsta(isp.getVrsta());
+
+                        ispitiSaPridruzenimPredmetKolonama.add(ispDTO);
+                    }
+                }
+            }
+        }
+        return ispitiSaPridruzenimPredmetKolonama;
     }
 
 }

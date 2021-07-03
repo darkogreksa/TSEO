@@ -10,22 +10,34 @@ public class DokumentStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "naziv")
     private String naziv;
+
+    @Column
     private String tip;
+
+    @Lob
+    private byte[] data;
 
     @ManyToOne()
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
-    public DokumentStudent() {
+    public DokumentStudent(){
+
     }
 
-    public DokumentStudent(Long id, String naziv, String tip, Student student) {
-        this.id = id;
+    public DokumentStudent(String naziv, String tip, byte[] data, Student student) {
         this.naziv = naziv;
         this.tip = tip;
+        this.data = data;
         this.student = student;
     }
+
+    public DokumentStudent(String naziv, String fileDownloadUri, String contentType, long size) {
+    }
+
 
     public Long getId() {
         return id;
@@ -51,6 +63,14 @@ public class DokumentStudent {
         this.tip = tip;
     }
 
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
     public Student getStudent() {
         return student;
     }
@@ -64,8 +84,6 @@ public class DokumentStudent {
         return "DokumentStudent{" +
                 "id=" + id +
                 ", naziv='" + naziv + '\'' +
-                ", tip='" + tip + '\'' +
-                ", student=" + student +
                 '}';
     }
 }

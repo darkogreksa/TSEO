@@ -2,12 +2,17 @@ package com.example.tseo.controller;
 
 import com.example.tseo.dto.DokumentDTO;
 import com.example.tseo.model.DokumentStudent;
+import com.example.tseo.model.UploadFileResponse;
 import com.example.tseo.service.DokumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,5 +75,36 @@ public class DokumentController {
         }
         dokumentService.deleteDokument(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/upload/{id}")
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("id") Long id) throws IOException {
+        DokumentStudent dbFile = dokumentService.storeFile(file, id);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(String.valueOf(dbFile.getId()))
+                .toUriString();
+
+        return new UploadFileResponse(dbFile.getNaziv(), fileDownloadUri,
+                file.getContentType(), file.getSize());
+    }
+
+
+    @GetMapping("/student/{id}")
+    public ResponseEntity<List<DokumentStudent>> get(@PathVariable("id") Long id){
+        List<DokumentStudent> dokumentStudent = dokumentService.getByStudent(id);
+
+        return new ResponseEntity<>(dokumentStudent, HttpStatus.OK);
+    }
+
+    @GetMapping("/download/{name}")
+    public ResponseEntity<byte[]> getFile(@PathVariable String name) {
+        DokumentStudent fileOptional = dokumentService.findByName(name);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileOptional.getNaziv() + "\"")
+                .body(fileOptional.getData());
+
     }
 }
