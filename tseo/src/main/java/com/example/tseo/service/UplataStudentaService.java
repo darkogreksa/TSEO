@@ -20,6 +20,13 @@ public class UplataStudentaService {
         return  uplataStudentaRepository.findAll();
     }
 
+    public List<UplataStudenta> getAll(Integer page, Integer size) {
+        PageRequest pageReq = PageRequest.of(page, size);
+        Page<UplataStudenta> uplate = uplataStudentaRepository.findAll(pageReq);
+
+        return uplate.getContent();
+    }
+
     public UplataStudenta getOne(Long id) {
         return uplataStudentaRepository.getOne(id);
     }
@@ -45,4 +52,11 @@ public class UplataStudentaService {
         uplataStudentaRepository.delete(u);
     }
 
+    public List<UplataStudenta> getAllBetweenDates(Date startDate, Date endDate) {
+        return uplataStudentaRepository.getAllBetweenDates(startDate, endDate);
+    }
+
+    public List<UplataStudenta> getByStudentId(Long id){
+        return uplataStudentaRepository.findAllByStudentId(id);
+    }
 }

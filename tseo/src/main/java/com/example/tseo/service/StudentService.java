@@ -31,5 +31,17 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public Page<Student> findAllPaged(Integer page, Integer size) {
+        PageRequest pageReq = PageRequest.of(page, size);
+        Page<Student> students = studentRepository.findAll(pageReq);
+
+        return students;
+    }
+
+    public List<Student> findAllByIme(String ime){
+        List<Student> studenti = studentRepository.findAllByIme(ime);
+
+        return studenti;
+    }
 }
 
