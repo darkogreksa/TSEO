@@ -1,12 +1,15 @@
 package com.example.tseo.controller;
 
+import com.example.tseo.dto.IzlazakPolozioDTO;
 import com.example.tseo.dto.KorisnikDTO;
 import com.example.tseo.dto.StudentDTO;
-import com.example.tseo.model.Korisnik;
-import com.example.tseo.model.Student;
+import com.example.tseo.model.*;
+import com.example.tseo.repository.IzlazakNaIspitRepository;
 import com.example.tseo.service.KorisnikService;
+import com.example.tseo.service.PohadjanjePredmetaService;
 import com.example.tseo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +28,11 @@ public class StudentController {
     @Autowired
     KorisnikService korisnikService;
 
+    @Autowired
+    PohadjanjePredmetaService pohadjanjePredmetaService;
+
+    @Autowired
+    IzlazakNaIspitRepository izlazakRepository;
 
     @GetMapping(value = {"", "/"})
     public ResponseEntity<List<StudentDTO>> getAll(){
@@ -35,6 +43,14 @@ public class StudentController {
         }
 
         return new ResponseEntity<List<StudentDTO>>(studentDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{page}/{size}")
+    public ResponseEntity<Page<Student>> getAll(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+        Page<Student> studenti = studentService.findAllPaged(page, size);
+        if (studenti == null)
+            return new ResponseEntity<Page<Student>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Page<Student>>(studenti, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
@@ -92,6 +108,67 @@ public class StudentController {
 
         studentService.delete(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    @GetMapping(value = "/ime/{ime}")
+    public ResponseEntity<List<StudentDTO>> findAllByIme(@PathVariable("ime") String ime){
+        List<Student> studenti = studentService.findAllByIme(ime);
+        List<StudentDTO> studentDTOS = new ArrayList<>();
+        for (Student s : studenti){
+            studentDTOS.add(new StudentDTO(s));
+        }
+        if(studenti == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<StudentDTO>>(studentDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/pohadja/{studentId}")
+    public ResponseEntity<List<PohadjanjePredmeta>> studentPohadja(@PathVariable("studentId") Long studentId){
+        List<PohadjanjePredmeta> pohadjanje = pohadjanjePredmetaService.getAllByStudent_Id(studentId);
+        if(pohadjanje == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<PohadjanjePredmeta>>(pohadjanje, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/nepolozeni/{studentId}")
+    public ResponseEntity<List<Predmet>> studentNijePolozio(@PathVariable("studentId") Long studentId){
+        List<PohadjanjePredmeta> pohadjanje = pohadjanjePredmetaService.getAllByStudent_Id(studentId);
+        List<IzlazakNaIspit> polozio = izlazakRepository.findAllByStudentIdAndPolozioTrue(studentId);
+
+        List<Predmet> polozeni = new ArrayList<Predmet>();
+        List<Predmet> nepolozeni = new ArrayList<Predmet>();
+        for(PohadjanjePredmeta pp : pohadjanje) {
+            nepolozeni.add(pp.getIzvedba().getPredmet());
+            for(IzlazakNaIspit izl : polozio) {
+                if(izl.getIspit().getPredmet().getId().equals(pp.getIzvedba().getPredmet().getId())) {
+                    polozeni.add(pp.getIzvedba().getPredmet());
+                }
+            }
+        }
+        for(PohadjanjePredmeta pp : pohadjanje) {
+            for(Predmet p : polozeni) {
+                if(pp.getIzvedba().getPredmet().getId().equals(p.getId())) {
+                    nepolozeni.remove(p);
+                }
+            }
+        }
+
+
+        if(pohadjanje == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<Predmet>>(nepolozeni, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/polozio/{studentId}")
+    public ResponseEntity<List<IzlazakPolozioDTO>> studentPolozio(@PathVariable("studentId") Long studentId){
+        List<IzlazakNaIspit> polozio = izlazakRepository.findAllByStudentIdAndPolozioTrue(studentId);
+        if(polozio == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        List<IzlazakPolozioDTO> iDTO = new ArrayList<>();
+        for(IzlazakNaIspit i : polozio) {
+            iDTO.add(new IzlazakPolozioDTO(i));
+        }
+        return new ResponseEntity<List<IzlazakPolozioDTO>>(iDTO, HttpStatus.OK);
     }
 
 }

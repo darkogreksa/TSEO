@@ -1,7 +1,12 @@
 package com.example.tseo.controller;
 
 import com.example.tseo.dto.PredmetDTO;
+import com.example.tseo.model.IzlazakNaIspit;
+import com.example.tseo.model.Nastavnik;
+import com.example.tseo.model.Predmet;
+import com.example.tseo.model.Student;
 import com.example.tseo.repository.PredmetRepository;
+import com.example.tseo.service.IzlazakNaIspitService;
 import com.example.tseo.service.NastavnikService;
 import com.example.tseo.service.PredmetService;
 import com.example.tseo.service.StudentService;
@@ -28,6 +33,11 @@ public class PredmetController {
     @Autowired
     NastavnikService nastavnikService;
 
+    @Autowired
+    IzlazakNaIspitService izlazakService;
+
+    @Autowired
+    StudentService studentService;
     
     @GetMapping(value = "/all")
     public ResponseEntity<List<PredmetDTO>> getAll(){
@@ -77,9 +87,35 @@ public class PredmetController {
     }
 
 
+    @GetMapping(value = "/nastavnik/{nastavnikId}")
+    public ResponseEntity<List<Predmet>> getAllKojeNastavnikIzvodi(@PathVariable("nastavnikId") Long id) {
+        Nastavnik nastavnik = nastavnikService.getOne(id);
 
-    
-    
+        List<Predmet> predmeti =predmetRepository.getAllThatNastavnikIzvodi(nastavnik);
+
+        System.out.println(predmeti);
+
+        return new ResponseEntity<List<Predmet>>(predmeti, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/nepolozeni/{studentId}")
+    public ResponseEntity<Set<PredmetDTO>> getAllNepolozeni(@PathVariable("studentId") Long studentId){
+//        List<PredmetDTO> predmeti = predmetService.getAll();
+        Set<PredmetDTO> predmeti = new HashSet<PredmetDTO>();
+        Student s = studentService.getOne(studentId);
+        List<IzlazakNaIspit> izlasci = izlazakService.getAll();
+
+        for(IzlazakNaIspit i : izlasci) {
+            if(i.getStudent().getId() == studentId) {
+                System.out.println("true false dal je polozio: " + i.getPolozio());
+                if(!i.getPolozio()) {
+                    predmeti.add(new PredmetDTO(i.getIspit().getPredmet()));
+                }
+            }
+        }
+
+        return new ResponseEntity<Set<PredmetDTO>>(predmeti, HttpStatus.OK);
+    }
     
     
 }
