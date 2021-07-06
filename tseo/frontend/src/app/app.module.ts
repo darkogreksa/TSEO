@@ -15,6 +15,11 @@ import { PredmetComponent } from './predmet/predmet.component';
 import { PrijavaIspitaComponent } from './prijava-ispita/prijava-ispita.component';
 import { IspitComponent } from './ispit/ispit.component';
 import { StudentService } from './service/student.service';
+import { HomeComponent } from './home/home.component';
+import { NastavnikStranicaComponent } from './home/nastavnik-stranica/nastavnik-stranica.component';
+import { StudentComponent } from './student/student.component';
+import { NastavnikAddComponent } from './nastavnik/nastavnik-add/nastavnik-add.component';
+import { NastavnikEditComponent } from './nastavnik/nastavnik-edit/nastavnik-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { StudentService } from './service/student.service';
     NastavnikComponent,
     PredmetComponent,
     PrijavaIspitaComponent,
-    IspitComponent
+    IspitComponent,
+    HomeComponent,
+    NastavnikStranicaComponent,
+    StudentComponent,
+    NastavnikAddComponent,
+    NastavnikEditComponent
   ],
   imports: [
     BrowserModule,

@@ -30,4 +30,24 @@ export class NastavnikService {
   delete(id: number) {
     return this.http.delete('/api/nastavnik/' + id);
   }
+
+  getPredmetiByNastavnikId(id: number) {
+    return this.http.get<any[]>('/api/predmet/nastavnik/' + id);
+  }
+
+  getIspitiForUpisOcenaByNastavnikIdAndRokId(nastavnikId: number, rokId: number) {
+    return this.http.get<any[]>('/api/ispit/ocenjivanje/nastavnik/' + nastavnikId + '/rok/' + rokId);
+  }
+
+  getIspitiForUpisOcenaByNastavnikId(nastavnikId: number) {
+    return this.http.get<any[]>('/api/ispit/ocenjivanje/nastavnik/' + nastavnikId);
+  }
+
+  getKolokvijumiForUpisOcenaByNastavnikId(nastavnikId: number) {
+    return this.http.get<any[]>('/api/ispit/kolokvijum/nastavnik/' + nastavnikId);
+  }
+
+  getIzlasciZaUpisByIspitId(IspitId: number) {
+    return this.http.get<any[]>('/api/izlazak/ispit/' + IspitId);
+  }
 }
