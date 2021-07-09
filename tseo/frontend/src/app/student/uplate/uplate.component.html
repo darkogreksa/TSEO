@@ -1,0 +1,15 @@
+<h4 class="display-4 text-center">Uplate: </h4>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Iznos</th>
+      <th>Datum uplate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of uplate">
+      <td>{{u.iznos}}</td>
+      <td>{{u.datum}}</td>
+    </tr>
+  </tbody>
+</table>

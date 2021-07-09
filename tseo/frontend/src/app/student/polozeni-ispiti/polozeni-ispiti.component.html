@@ -1,0 +1,22 @@
+<h4 class="display-4 text-center">Položeni ispiti: </h4>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Naziv predmeta</th>
+      <th>Sifra predmeta</th>
+      <th>ESPB bodovi</th>
+      <th>Ocena</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let polozeni of svi">
+      <td>{{ polozeni.nazivPredmeta }}</td>
+      <td>{{polozeni.sifra}} </td>
+      <td>{{polozeni.espb}} </td>
+      <td>{{polozeni.ocena}} </td>
+    </tr>
+  </tbody>
+  <hr>
+<label id="prosek">Prosečna ocena:{{prosek}}</label>
+<label id="espbBodovi">Ukupno ESPB:{{bodovi}}</label>
+</table>

@@ -1,0 +1,46 @@
+<h4 class="display-4 text-center">Prijava ispita</h4>
+<div class="row  mt-3 mb-3">
+  <form [formGroup]="searchStudentForm" class="col-md-6 offset-md-3">
+    <div class="row no-gutters align-items-center">
+      <div class="col">Izaberite ispiti rok
+        <select name="" id=""> 
+          <option value="">Junski</option>
+          <option value="">Julski</option>
+          <option value="">Septembarski</option>
+        </select>
+        <button class="btn btn-success">
+          <i class="fa fa-plus">Potvrdi</i>
+        </button>
+      </div>
+      <div class="col-auto">
+        
+      </div>
+    </div>
+  </form>
+  
+</div>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Naziv predmeta</th>
+      <th>Profesor</th>
+      <th>Datum</th>
+      <th>Učionica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ispit of ispiti">
+      <td>{{ ispit.nazivPredmeta }}</td>
+      <td>{{ ispit.prezime }}</td>
+      <td>{{ ispit.jmbg }}</td>
+      <td>{{ ispit.mestoStanovanja }}</td>
+      <td class="h5"><a class="badge badge-primary"> <i class="fa fa-edit"></i> Prijavi</a></td>
+      <td class="h5">
+      
+      </td>
+      <td class="h5">
+  
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<div class="background">
+  <div class="container">
+    <h1 class="ime">Fakultet tehničkih nauka</h1>
+    <h1 class="ime">NITAJ CAR</h1>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card">
+          <img
+            class="card-img-top profile-image"
+            src="../../../assets/images/random1.png"
+            alt="IMG"
+          />
+          <div class="card-body">
+            <div class="col-md-6">
+              <label>Ime i prezime</label>
+            </div>
+            <div class="col-md-6">
+              {{ student.ime }}
+              {{ student.prezime }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>JMBG</label>
+            </div>
+            <div class="col-md-6">
+              {{ student.jmbg }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Mesto stanovanja</label>
+            </div>
+            <div class="col-md-6">
+              {{ student.mestoStanovanja }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Smer</label>
+            </div>
+            <div class="col-md-6">
+              {{ student.smer }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label>Broj indeksa</label>
+            </div>
+            <div class="col-md-6">
+              {{ student.brIndeksa }}
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex" role="group">
+              <button
+                class="btn btn-success"
+                [routerLink]="['/student/', student.id]"
+              >
+                Izmeni lične podatke
+              </button>
+              <button (click)="createUser()" *ngIf="enableEdit">
+                Napravi nalog
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9 ">
+        <div class="tab-panel tabovi">
+          <tabset #memberTabs class="member-tabset">
+            <tab heading="Položeni predmeti">
+              <app-polozeni-ispiti></app-polozeni-ispiti>
+            </tab>
+            <tab heading="Nepoloženi predmeti">
+              <app-pohadjanje-predmeta></app-pohadjanje-predmeta>
+            </tab>
+            <tab heading="Prijava ispita">
+              <app-prijava-ispita></app-prijava-ispita>
+            </tab>
+            <tab heading="Dokumenti">
+              <form
+                name="uploadData"
+                [formGroup]="uploadFile"
+                (ngSubmit)="upload()"
+              >
+                <input type="file" name="file" (change)="selectFile($event)" />
+                <button>Upload</button>
+              </form>
+              <app-dokumenta></app-dokumenta>
+            </tab>
+            <tab heading="Uplate">
+              <app-uplate></app-uplate>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,13 @@ import { NastavnikStranicaComponent } from './home/nastavnik-stranica/nastavnik-
 import { StudentComponent } from './student/student.component';
 import { NastavnikAddComponent } from './nastavnik/nastavnik-add/nastavnik-add.component';
 import { NastavnikEditComponent } from './nastavnik/nastavnik-edit/nastavnik-edit.component';
+import { AddStudentComponent } from './student/add-student/add-student.component';
+import { DokumentComponent } from './student/dokument/dokument.component';
+import { EditStudentComponent } from './student/edit-student/edit-student.component';
+import { PohadjanjePredmetaComponent } from './student/pohadjanje-predmeta/pohadjanje-predmeta.component';
+import { PolozeniIspitiComponent } from './student/polozeni-ispiti/polozeni-ispiti.component';
+import { StudentProfilComponent } from './student/student-profil/student-profil.component';
+import { UplateComponent } from './student/uplate/uplate.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +39,14 @@ import { NastavnikEditComponent } from './nastavnik/nastavnik-edit/nastavnik-edi
     NastavnikStranicaComponent,
     StudentComponent,
     NastavnikAddComponent,
-    NastavnikEditComponent
+    NastavnikEditComponent,
+    AddStudentComponent,
+    DokumentComponent,
+    EditStudentComponent,
+    PohadjanjePredmetaComponent,
+    PolozeniIspitiComponent,
+    StudentProfilComponent,
+    UplateComponent
   ],
   imports: [
     BrowserModule,
