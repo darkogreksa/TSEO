@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="background">
+  <div class="container">
+    <h1 class="ime">Fakultet tehničkih nauka</h1>
+    <h1 class="ime">NITAJ CAR</h1>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card">
+          <div>
+            <img
+              class="card-img-top profile-image"
+              src="../../../assets/images/random1.png"
+              alt="IMG"
+            />
+            <div class="card-body">
+              <strong>JMBG:</strong>
+              <p>1293124314</p>
+              <div>
+                <strong>Mesto stanovanja:</strong>
+                <p>Jovan Jovanovic 3, Novi Sad</p>
+              </div>
+              <div>
+                <strong>Korisničko ime:</strong>
+                <p>{{ulogovan.username}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex" role="group">
+              <button class="btn btn-success">
+                Izmeni lične podatke
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9 ">
+        <div class="tab-panel tabovi">
+          <tabset #memberTabs class="member-tabset" (click)="onIspitiClick()">
+            <tab heading="Nastavnici">
+              <div class="container col-sm-12">
+                <app-nastavnik-list></app-nastavnik-list>
+              </div>
+            </tab>
+            <tab heading="Studenti">
+              <div class="container">
+                <app-student></app-student>
+              </div>
+            </tab>
+            <tab heading="Predmeti">
+              <app-predmet [predmeti]="predmeti"></app-predmet>
+            </tab>
+            <tab heading="Ispiti">
+              <app-ispit [ispiti]="ispiti"></app-ispit>
+            </tab>
+            <tab heading="Uplate studentima">
+              <app-uplate-studentu></app-uplate-studentu>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

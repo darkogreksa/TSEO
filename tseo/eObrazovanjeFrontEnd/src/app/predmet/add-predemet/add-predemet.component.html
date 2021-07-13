@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<div class="container col-lg-4 col-md-6 col-xs-12" id="addPredmet">
+  <h1>Dodavanje predmeta</h1>
+  <br />
+  <form>
+    <div class="form-group">
+      <div>
+        <label>Naziv</label>
+        <input
+          name="naziv"
+          style="text-align: center"
+          class="form-control"
+          placeholder="Naziv"
+          [(ngModel)]="predmet.naziv"
+        />
+        <label>ESPB</label>
+        <input
+          type="number"
+          name="espb"
+          style="text-align: center"
+          class="form-control"
+          placeholder="ESPB"
+          [(ngModel)]="predmet.espb"
+        />
+        <label>Sifra</label>
+        <input
+          name="sifra"
+          style="text-align: center"
+          class="form-control"
+          placeholder="Sifra"
+          [(ngModel)]="predmet.sifraPredmeta"
+        />
+        <label>Smer</label>
+        <select
+          #selectSmer
+          name="selectSmer"
+          class="form-control"
+          style="width:100%; display: inline"
+        >
+          <option value="SIIT">SIIT</option>
+          <option value="SIT">SIT</option>
+          <option value="E1">E1</option>
+          <option value="E2">E2</option>
+        </select>
+        <p style="color:red">{{ errorMsg }}</p>
+      </div>
+    </div>
+  </form>
+
+  <button
+    style="margin: 5px"
+    type="button"
+    (click)="addPredmet()"
+    class="btn btn-outline-success"
+  >
+    Sačuvaj predmet
+  </button>
+  <button
+    style="margin: 5px"
+    type="button"
+    class="btn btn-outline-danger"
+    [routerLink]="['/admin']"
+  >
+    Odustani
+  </button>
+</div>

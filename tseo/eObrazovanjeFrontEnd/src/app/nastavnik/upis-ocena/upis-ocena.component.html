@@ -1,0 +1,26 @@
+<h4 class="display-4 text-center">Upis ocena za ispit: [naziv, id, datum?]</h4>
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Id Izlaska</th>
+      <th>Ime studenta</th>
+      <th>Prezime studenta</th>
+      <th>Broj indeksa studenta</th>
+      <th>Bodovi</th>
+      <th>Ocena</th>
+      <th>Polozio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let izl of izlasci">
+      <th scope="row">{{ izl.id }}</th>
+      <td>{{izl.ime}}</td>
+      <td>{{izl.prezime}}</td>
+      <td>{{izl.indeks}}</td>
+      <td><input type="number" value="{{izl.bodovi}}"></td>
+      <td><input type="number" value="{{izl.ocena}}"></td>
+      <td><input type="checkbox" [checked]="izl.polozio"></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-success btn-lg" (click)="oceni()">Oceni</button>

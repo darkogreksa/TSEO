@@ -1,0 +1,103 @@
+<div class="container">
+  <h4 class="display-4 text-center">Studenti</h4>
+  <div class="row  mt-3 mb-3">
+    <form [formGroup]="searchStudentForm" class="col-md-6 offset-md-3">
+      <div class="row no-gutters align-items-center">
+        <div class="col">
+          <input
+            class="form-control form-control-lg form-control-borderless"
+            type="search"
+            placeholder="Vrednost za pretragu"
+            formControlName="searchQuery"
+            #searchQuery
+          />
+        </div>
+        <div class="col-auto">
+          <button
+            class="btn btn-lg btn-primary"
+            type="submit"
+            (click)="search(searchQuery.value)"
+          >
+            <i class="fa fa-search"></i> Pretraži
+          </button>
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-success btn-lg ml-4" [routerLink]="['/student/add']">
+      <i class="fa fa-plus"></i>Dodaj studenta
+    </button>
+  </div>
+  <div class="container">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Smer</th>
+          <th>Broj indeksa</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of svi">
+          <td>{{ student.ime }}</td>
+          <td>{{ student.prezime }}</td>
+          <td>{{ student.smer }}</td>
+          <td>{{ student.brIndeksa }}</td>
+          <td>
+            <a
+              class="badge badge-warning"
+              [routerLink]="['/student/', student.id]"
+            >
+              <i class="fa fa-edit"></i>
+            </a>
+          </td>
+          <td>
+            <a class="badge badge-danger" (click)="delete(student.id)">
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+          <td>
+            <a
+              class="badge badge-primary"
+              [routerLink]="['/polozio/', student.id]"
+              >Položeni</a
+            >
+          </td>
+          <td>
+            <a
+              class="badge badge-primary"
+              [routerLink]="['/pohadja/', student.id]"
+              >Nepoloženi</a
+            >
+          </td>
+          <td>
+            <a
+              class="badge badge-primary"
+              [routerLink]="['/student-profil/', student.id]"
+              >Profil</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row d-flex justify-content-center">
+      <pagination
+        *ngIf="studentPage.totalElements > studentPage.size"
+        [boundaryLinks]="true"
+        [itemsPerPage]="studentPage.size"
+        [totalItems]="studentPage.totalElements"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+      >
+      </pagination>
+    </div>
+  </div>
+</div>

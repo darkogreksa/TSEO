@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/home']" style="cursor: pointer"
+      >Studentska Sluzba</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto" *ngIf="isUserLogged">
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/student']"
+            >Student <span class="sr-only">(current)</span></a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/nastavnik']">Nastavnik</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/kartica']">Robne kartice</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/analitika']">Analitike kartica</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/dokument']">Dokumenti</a>
+        </li>
+      </ul>
+      <ul *ngIf="isUserLogged" class="navbar-nav ml-auto">
+        <li class="nav-item dropdown" dropdown>
+          <!-- <a
+            class="btn nav-link dropdown-toggle"
+            style="cursor: pointer"
+            dropdownToggle
+            >Dobrodošli, {{ name }}<span class="caret"></span
+          ></a> -->
+          <ul class="dropdown-menu" *dropdownMenu>
+            <div class="dropdown-divider"></div>
+            <li>
+              <a class="dropdown-item" (click)="logout()"
+                ><i class="fa fa-sign-out"></i> Odjavite se</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div style="text-align:center">
+  <img
+    width="100"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+</div>

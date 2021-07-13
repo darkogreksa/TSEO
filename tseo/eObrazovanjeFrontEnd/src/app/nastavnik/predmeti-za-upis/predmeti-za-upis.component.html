@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+  <h4 class="display-4 text-center">Upis ocena za rok: [naziv roka]</h4>
+</div>    
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Id Ispita</th>
+      <th>Naziv Predmeta</th>
+      <th>Datum Ispita</th>
+      <th>Šifra Predmeta</th>
+      <th>Vrsta Ispita</th>
+      <th>Unesi ocene</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let predmet of predmeti">
+      <th scope="row">{{ predmet.idIspit }}</th>
+      <td>{{ predmet.naziv }}</td>
+      <td>{{ predmet.datum }}</td>
+      <td>{{ predmet.sifra }}</td>
+      <td>{{ predmet.vrsta }}</td>
+      <td class="h5"><a class="badge badge-primary" [routerLink]="['/upis/ispit/', predmet.idIspit ]"><i class="fa fa-edit"></i>Unesi ocene</a></td>
+    </tr>
+  </tbody>
+</table>

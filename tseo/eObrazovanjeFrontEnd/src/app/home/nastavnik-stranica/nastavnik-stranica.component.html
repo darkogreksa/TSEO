@@ -1,0 +1,177 @@
+<app-navbar></app-navbar>
+<div class="background">
+  <div class="container">
+    <h1 class="ime">Fakultet tehničkih nauka</h1>
+    <h1 class="ime">{{ nastavnik.ime }}</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div>
+            <img
+              class="card-img-top profile-image"
+              src="../../../assets/images/random1.png"
+              alt="IMG"
+            />
+            <div class="card-body">
+              <div>
+                  <strong>Ime i prezime:</strong>
+                  <p>{{ nastavnik.ime }} {{ nastavnik.prezime }}</p>
+              </div>
+              <strong>JMBG:</strong>
+              <p>{{ nastavnik.jmbg }}</p>
+              <div>
+                <strong>Mesto stanovanja:</strong>
+                <p>{{ nastavnik.mestoStanovanja }}</p>
+              </div>
+              <div *ngIf="vidi">
+                <strong>Korisničko ime:</strong>
+                <p>{{ nastavnik.korisnik.korisnickoIme }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex" role="group">
+              <button class="btn btn-success">
+                Izmeni lične podatke
+              </button>
+              <button (click)="createUser()" *ngIf="enableEdit">Napravi nalog</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 ">
+        <div class="tab-panel tabovi">
+          <tabset #memberTabs class="member-tabset">
+            <tab heading="Predmeti">
+              <h5>Lista predmeta:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Naziv predmeta</th>
+                    <th scope="col">Šifra predmeta</th>
+                    <th scope="col">ESPB</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let predmet of predmeti; let i = index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{predmet.naziv}}</td>
+                    <td>{{predmet.sifraPredmeta}}</td>
+                    <td>{{predmet.espb}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </tab>
+            <tab heading="Ispiti">
+              <h5>Lista ispita:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Učionica</th>
+                    <th scope="col">Predmet</th>
+                    <th scope="col">Ispitni rok</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ispit of ispiti; let i = index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{ispit.datum | date}}</td>
+                    <td>{{ispit.ucionica}}</td>
+                    <td>{{ispit.predmet}}</td>
+                    <td>{{ispit.rok}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </tab>
+            <tab heading="Kolokvijumi">
+              <h5>Lista kolokvijuma:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Učionica</th>
+                    <th scope="col">Predmet</th>
+                    <th scope="col">Ispitni rok</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let kolokvijum of kolokvijumi; let i = index">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{kolokvijum.datum | date}}</td>
+                        <td>{{kolokvijum.ucionica}}</td>
+                        <td>{{kolokvijum.predmet}}</td>
+                        <td>{{kolokvijum.rok}}</td>
+                      </tr>
+                </tbody>
+              </table>
+              <!-- <button class="btn btn-success">
+                Dodaj kolokvijum
+              </button> -->
+            </tab>
+            <tab heading="Unošenje rezultata">
+              <h5>Nepregledani kolokvijumi:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Naziv</th>
+                    <th scope="col">Učionica</th>
+                    <th scope="col">Predmet</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let kolokvijum of nepregledaniKolokvijumi; let i = index">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{kolokvijum.datum | date}}</td>
+                    <td>{{kolokvijum.ucionica}}</td>
+                    <td>{{kolokvijum.predmet}}</td>
+                    <td>{{kolokvijum.rok}}</td>
+                    <td>
+                      <a class="btn btn-success text-white" style="cursor: pointer" [routerLink]="['/upis/ispit/', kolokvijum.id]">
+                        Unesite rezultate
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5>Nepregledani ispiti:</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Učionica</th>
+                    <th scope="col">Predmet</th>
+                    <th scope="col">Ispitni rok</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ispit of nepregledaniIspiti; let i = index">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{ispit.datum | date}}</td>
+                        <td>{{ispit.ucionica}}</td>
+                        <td>{{ispit.predmet}}</td>
+                        <td>{{ispit.rok}}</td>
+                        <td>
+                          <a class="btn btn-success text-white" style="cursor: pointer" [routerLink]="['/upis/ispit/', ispit.id]">
+                            Unesite rezultate
+                          </a>
+                        </td>
+                  </tr>
+                </tbody>
+              </table>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

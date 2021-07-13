@@ -1,0 +1,42 @@
+<div class="continer" style="text-align: center">
+  <h4>Uplate na račun studenta</h4>
+  <br />
+  <p>Izaberite studenta</p>
+  <div class="ng-autocomplete" style="margin: 0 auto">
+    <ng-autocomplete
+      [data]="studenti"
+      [searchKeyword]="keyword"
+      (selected)="selectEvent($event)"
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate"
+    >
+    </ng-autocomplete>
+
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.fullId"></a>
+    </ng-template>
+
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>
+  <br />
+  <p>Unesite iznos za uplatu (RSD)</p>
+  <input
+    name="iznos"
+    style="text-align: center; width: 200px; margin:0 auto"
+    class="form-control"
+    placeholder="Iznos"
+    [(ngModel)]="uplataStudenta.iznos"
+  />
+  <br />
+  <button
+    style="margin: 5px"
+    type="button"
+    (click)="uplati()"
+    class="btn btn-outline-success"
+  >
+    Izvrsite uplatu
+  </button>
+  <p style="color:red">{{ errorMsg }}</p>
+</div>

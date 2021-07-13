@@ -1,0 +1,25 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Naziv</th>
+      <th>Tip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dokument of dokumenti">
+      <th scope="row">{{ dokument.id }}</th>
+      <td>{{ dokument.naziv }}</td>
+      <td>{{ dokument.tip }}</td>
+      <img src="data:image/png;base64,{{dokument.data}}" class="rounded-circle" height="30%" width="30%">
+      <td class="h5"><a class="badge badge-primary" (click)="downloadFile(dokument.naziv)"> <i class="fa fa-download"></i> Preuzmi</a></td>
+      <td class="h5"><a class="badge badge-primary" (click)="delete(student.id)"> <i class="fa fa-trash"></i> Obriši</a></td>
+      <td class="h5">
+ 
+      </td>
+      <td class="h5">
+  
+      </td>
+    </tr>
+  </tbody>
+</table>
