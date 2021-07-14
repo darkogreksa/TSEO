@@ -13,6 +13,7 @@ import ftn.uns.ac.rs.eobrazovanje.repository.IzlazakRepository;
 import ftn.uns.ac.rs.eobrazovanje.servis.KorisnikService;
 import ftn.uns.ac.rs.eobrazovanje.servis.PohadjanjePredmetaService;
 import ftn.uns.ac.rs.eobrazovanje.servis.StudentService;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -102,7 +103,7 @@ public class StudentController {
         student.setSmer(s.getSmer());
         student.setBrIndeksa(s.getBrIndeksa());
 
-        student = studentService.create(student);
+        student = studentService.update(student);
         return new ResponseEntity<StudentDTO>(new StudentDTO(student), HttpStatus.OK);
     }
 

@@ -26,7 +26,9 @@ public class StudentService{
     public Student create(Student s){
         return studentRepository.save(s);
     }
-
+    public Student update(Student s ){
+        return studentRepository.save(s);
+    }
     public void delete(Long id){
         studentRepository.deleteById(id);
     }

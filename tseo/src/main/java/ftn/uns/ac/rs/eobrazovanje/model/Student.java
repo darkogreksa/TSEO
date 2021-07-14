@@ -1,5 +1,7 @@
 package ftn.uns.ac.rs.eobrazovanje.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -37,18 +39,23 @@ public class Student implements Serializable {
     @Column(name = "brIndeksa")
     private String brIndeksa;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private Set<DokumentStudent> dokumentiStudenta = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private Set<UplataStudenta> uplateStudenta = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private Set<PohadjanjePredmeta> pohadjanjePredmeta = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     private Set<IzlazakNaIspit> izlasci = new HashSet<>();
-    
+
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "korisnik", referencedColumnName = "id")
     private Korisnik korisnik;

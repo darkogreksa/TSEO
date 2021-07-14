@@ -1,8 +1,7 @@
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { StudentService } from "src/app/_service/student.service";
-
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-pohadjanje-predmeta",

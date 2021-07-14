@@ -65,6 +65,8 @@ public class IspitService {
 		
 	}
 
+//	A page is a sublist of a list of objects.
+//	It allows gain information about the position of it in the containing entire list.
 	public Page<IspitDTO> getAllPage(Integer page, Integer size) {
 		PageRequest pr = PageRequest.of(page, size);
 		Page<Ispit> i = ispitRepo.findAll(pr);

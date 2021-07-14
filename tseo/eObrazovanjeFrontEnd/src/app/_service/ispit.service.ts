@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { IspitZaNastavnika } from '../_model/ispit-za-nastavnika.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class IspitService {
   
