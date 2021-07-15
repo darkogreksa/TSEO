@@ -99,7 +99,6 @@ public class UplataStudentaController {
 
         uplata.setDatum(uplataDTO.getDatum());
         uplata.setIznos(uplataDTO.getIznos());
-        // da li uopste ima smisla dozvoliti kreiranje obrisanog entiteta?
         uplata.setObrisan(uplataDTO.isObrisan());
 
         // dodeljivanje studenta uplati

@@ -25,18 +25,12 @@
               </div>
             </div>
           </div>
-          <div class="card-footer">
-            <div class="btn-group d-flex" role="group">
-              <button class="btn btn-success">
-                Izmeni lične podatke
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
       <div class="col-sm-9 ">
         <div class="tab-panel tabovi">
-          <tabset #memberTabs class="member-tabset" (click)="onIspitiClick()">
+          <tabset #memberTabs class="member-tabset" >
             <tab heading="Nastavnici">
               <div class="container col-sm-12">
                 <app-nastavnik-list></app-nastavnik-list>

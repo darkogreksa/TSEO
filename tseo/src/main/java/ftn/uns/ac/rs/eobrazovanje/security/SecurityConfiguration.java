@@ -21,6 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	// Definisemo uputstvo za authentication managera
 	@Autowired
 	public void configureAuthentication(
 			AuthenticationManagerBuilder authenticationManagerBuilder)
@@ -35,6 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+	// Registrujemo authentication manager koji ce da uradi autentifikaciju
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {

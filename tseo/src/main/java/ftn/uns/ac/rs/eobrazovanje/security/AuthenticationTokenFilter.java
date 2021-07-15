@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
+//Filter koji ce presretati svaki zahtev klijenta ka serveru
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
 	@Autowired

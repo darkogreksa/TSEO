@@ -14,7 +14,6 @@
       <th>Mesto stanovanja</th>
       <th>Izmeni</th>
       <th>Obriši</th>
-      <th>Pogledaj predmete</th>
       <th>Profil</th>
     </tr>
   </thead>
@@ -27,7 +26,6 @@
       <td>{{ nastavnik.mestoStanovanja }}</td>
       <td class="h5"><a class="badge badge-primary" [routerLink]="['/nastavnik/', nastavnik.id]"> <i class="fa fa-edit"></i> Izmeni</a></td>
       <td class="h5" style="cursor: pointer; color: white"><a class="badge badge-danger" (click)="delete(nastavnik.id)"> <i class="fa fa-trash"></i> Obriši</a></td>
-      <td class="h5"><a class="badge badge-secondary" [routerLink]="['/izvodi/', nastavnik.id]">Izvodi predmete</a></td>
       <td class="h5"><a class="badge badge-secondary" [routerLink]="['/nastavnik-stranica/', nastavnik.id]">Profil</a></td>
     </tr>
   </tbody>

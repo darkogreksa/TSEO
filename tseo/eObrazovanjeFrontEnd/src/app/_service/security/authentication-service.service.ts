@@ -13,38 +13,38 @@ export class AuthenticationService {
     private jwtUtilsService: JwtUtilsService
   ) {}
 
-  login(name: string, password: string): Observable<boolean> {
-    var headers: HttpHeaders = new HttpHeaders({
-      "Content-Type": "application/json"
-    });
-    return this.http
-      .post(this.loginPath, JSON.stringify({ name, password }), { headers })
-      .pipe(
-        map((res: any) => {
-          let token = res && res["token"];
-          if (token) {
-            localStorage.setItem(
-              "currentUser",
-              JSON.stringify({
-                username: name,
-                roles: this.jwtUtilsService.getRoles(token),
-                token: token.split(" ")[1]
-              })
-            );
-            return true;
-          } else {
-            return false;
-          }
-        }),
-        catchError((error: any) => {
-          if (error.status === 400) {
-            return Observable.throw("Ilegal login");
-          } else {
-            return Observable.throw(error.json().error || "Server error");
-          }
-        })
-      );
-  }
+  // login(name: string, password: string): Observable<boolean> {
+  //   var headers: HttpHeaders = new HttpHeaders({
+  //     "Content-Type": "application/json"
+  //   });
+  //   return this.http
+  //     .post(this.loginPath, JSON.stringify({ name, password }), { headers })
+  //     .pipe(
+  //       map((res: any) => {
+  //         let token = res && res["token"];
+  //         if (token) {
+  //           localStorage.setItem(
+  //             "currentUser",
+  //             JSON.stringify({
+  //               username: name,
+  //               roles: this.jwtUtilsService.getRoles(token),
+  //               token: token.split(" ")[1]
+  //             })
+  //           );
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       }),
+  //       catchError((error: any) => {
+  //         if (error.status === 400) {
+  //           return Observable.throw("Ilegal login");
+  //         } else {
+  //           return Observable.throw(error.json().error || "Server error");
+  //         }
+  //       })
+  //     );
+  // }
 
   getToken(): String {
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));

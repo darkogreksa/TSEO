@@ -21,18 +21,8 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPredmetPage(0, 6);
     this.ulogovan = JSON.parse(localStorage.getItem("userInfo"));
     this.logged = this.ulogovan.korisnickoIme;
   }
 
-  getPredmetPage(page: number, size: number) {
-    this.ispitService.getAllPage(page, size).subscribe(page => {
-      this.ispiti = page.content;
-    });
-  }
-
-  onIspitiClick() {
-    this.getPredmetPage(0, 6);
-  }
 }

@@ -93,18 +93,4 @@ export class NastavnikStranicaComponent implements OnInit {
     });
   }
 
-  createUser() {
-    this.korisnik = {
-      id: 6,
-      korisnickoIme: this.nastavnik.ime + this.nastavnik.jmbg,
-      student: null,
-      nastavnik: this.id
-      // datumKreiranja: Date.toString
-    };
-    console.log(this.nastavnik);
-    this.korisnikService.add(this.korisnik).subscribe(res => {
-      console.log("kreiran korisnik");
-      // this.router.navigate(["/nastavnik-stranica/"+this.id]);
-    });
-  }
 }

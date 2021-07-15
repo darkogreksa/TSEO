@@ -37,14 +37,7 @@ export class PolozeniIspitiComponent implements OnInit {
 
             this.svi = p;
 
-            for(let i=0; i<this.svi.length; i++){
-                total += this.svi[i].ocena;
-                b += this.svi[i].espb;
-                console.log(b);
-            }
-
-            this.prosek = total / this.svi.length;
-            this.bodovi = b;
+          
           });
          }
     });
