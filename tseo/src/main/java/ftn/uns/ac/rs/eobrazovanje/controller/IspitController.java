@@ -120,13 +120,9 @@ public class IspitController {
             IspitZaNastavnikaDTO dto = new IspitZaNastavnikaDTO(isp);
             ispitDTOs.add(dto);
         }
-
-        // uzeti trenutni rok od nekud...
-        //nastavnikService.getIspitiZaOcenjivanje(nastavnik, rok?)
-
         return new ResponseEntity<List<IspitZaNastavnikaDTO>>(ispitDTOs, HttpStatus.OK);
-
     }
+
     @GetMapping(value = "/kolokvijum/nastavnik/{nastavnikId}")
     public ResponseEntity<List<IspitZaNastavnikaDTO>> getAllKolokvijumiByNastavnik(@PathVariable("nastavnikId") Long id) {
         Nastavnik nastavnik = nastavnikService.getOne(id);
@@ -140,13 +136,9 @@ public class IspitController {
             IspitZaNastavnikaDTO dto = new IspitZaNastavnikaDTO(isp);
             ispitDTOs.add(dto);
         }
-
-        // uzeti trenutni rok od nekud...
-        //nastavnikService.getIspitiZaOcenjivanje(nastavnik, rok?)
-
         return new ResponseEntity<List<IspitZaNastavnikaDTO>>(ispitDTOs, HttpStatus.OK);
-
     }
+
     @GetMapping(value = "/ocenjivanje/nastavnik/{nastavnikId}")
     public ResponseEntity<List<IspitZaNastavnikaDTO>> getAllIspitiForGradingByNastavnik(@PathVariable("nastavnikId") Long nastavnikId){
         Nastavnik nastavnik = nastavnikService.getOne(nastavnikId);
@@ -175,31 +167,4 @@ public class IspitController {
 
         return new ResponseEntity<List<IspitZaOcenjivanjeDTO>>(ispiti, HttpStatus.OK);
     }
-    
-//    @GetMapping(value = "/nepolozeni/{studentId}")
-//    public ResponseEntity<List<IzlazakDTO>> getAllNepolozeniByStudent(@PathVariable("studentId") Long studentId){
-//    	Student student = studentService.getOne(studentId);
-//    	if (student == null) {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		} else {
-//			Set<IzlazakNaIspit> izlasci = new HashSet<>();
-//			for(IzlazakNaIspit i : izlasci) {
-//				if(i.getStudent().getId() == studentId) {
-//					if(!i.getPolozio()) {
-//						izlasci.add(i);
-//					}
-//				}
-//			}
-//			return new ResponseEntity<>(izlasci, HttpStatus.OK);
-//		}
-//    }
-    
-    
-    
-    
-    
-    
-    
-    
-
 }

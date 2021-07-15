@@ -51,10 +51,8 @@ public class NastavnikService {
         nastavnikRepository.delete(n);
     }
 
-
+    //dobavlja predmete koje nastavnik izvodi
     public List<IspitZaOcenjivanjeDTO> getIspitiZaOcenjivanje(Nastavnik nastavnik, IspitniRok rok) {
-        //dobavlja predmete koje nastavnik izvodi,
-        //dodati proveru da li se datum izvedbe poklapa sa datumom ispita ili roka??
         List<Predmet> predmeti = new ArrayList<>();
         List<IzvedbaPredmeta> izvedbe = new ArrayList<>();
         List<PredavanjePredmeta> predavanja = nastavnik.getPredaje();
@@ -71,7 +69,6 @@ public class NastavnikService {
             for (Ispit isp : p.getIspiti()) {
                 //filtriranje po unetom roku
                 if (isp.getRok() == rok) {
-
                     // ako nekom nije uneta ocena, tj. "polozio" nije niti true niti false, već null
                     // -> dodaj taj ispit u listu
                     boolean imaNeocenjenih = false;
@@ -101,8 +98,7 @@ public class NastavnikService {
         return ispitiSaPridruzenimPredmetKolonama;
     }
     public List<IspitZaNastavnikaDTO> getIspitiZaOcenjivanjeSviRokovi(Nastavnik nastavnik) {
-        //dobavlja predmete koje nastavnik izvodi,
-        //dodati proveru da li se datum izvedbe poklapa sa datumom ispita ili roka??
+        //dobavlja predmete koje nastavnik izvodi
         List<Predmet> predmeti = new ArrayList<>();
         List<IzvedbaPredmeta> izvedbe = new ArrayList<>();
         List<PredavanjePredmeta> predavanja = nastavnik.getPredaje();

@@ -77,9 +77,4 @@ public class IspitService {
 	public List<Ispit> getAllByRokAndPredmet(IspitniRok rok, Predmet predmet) {
 		return ispitRepo.getAllByRokAndPredmet(rok, predmet);
 	}
-	
-//	public List<IspitiZaPrijavuDTO> getAllIspitiZaPrijavu(Student s, IspitniRok ir){
-//		return ispitRepo.getAllIspitiZaPrijavu(s, ir);
-//	}
-	
 }

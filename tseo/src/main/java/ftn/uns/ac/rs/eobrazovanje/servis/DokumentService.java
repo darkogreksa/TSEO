@@ -45,12 +45,7 @@ public class DokumentService {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Student student = studentService.getOne(id);
-
-
         DokumentStudent dbFile = new DokumentStudent(fileName, file.getContentType(), file.getBytes(), student);
-
-        System.out.println("DOKUMEEEEEEENT " + dbFile + file.getBytes());
-
         return dokumentRepository.save(dbFile);
     }
 

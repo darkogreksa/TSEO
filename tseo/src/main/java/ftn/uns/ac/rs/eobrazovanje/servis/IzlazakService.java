@@ -14,18 +14,6 @@ public class IzlazakService extends CrudService<IzlazakNaIspit, IzlazakRepositor
 	@Autowired
 	IzlazakRepository izlazakRepository;
 
-//	public List<IzlazakNaIspit> getAll(){
-//		return izlazakRepository.findAll();
-//	}
-//	
-//	public IzlazakNaIspit getOne(Long id) {
-//		return izlazakRepository.findById(id).orElse(null);
-//	}
-//	
-//	public IzlazakNaIspit save(IzlazakNaIspit i) {
-//		return izlazakRepository.save(i);
-//	}
-
     public List<IzlazakNaIspit> getAllByIspitId(Long id){
         return izlazakRepository.findAllByIspit_Id(id);
     }

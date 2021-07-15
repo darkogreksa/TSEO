@@ -161,8 +161,6 @@ public class StudentController {
 	        	}
         	}
         }
-        
-        
         if(pohadjanje == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<List<Predmet>>(nepolozeni, HttpStatus.OK);

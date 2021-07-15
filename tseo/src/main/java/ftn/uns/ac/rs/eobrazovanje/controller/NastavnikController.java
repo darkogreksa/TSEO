@@ -24,9 +24,6 @@ public class NastavnikController {
     @Autowired
     private KorisnikService korisnikService;
 
-//    @Autowired
-//    private KorisnickiNalogService korisnickiNalogService;
-
     @GetMapping(value = "/all")
     public ResponseEntity<List<NastavnikDTO>> getAll(){
         List<NastavnikDTO> nastavnikDTOS = new ArrayList<>();
@@ -47,11 +44,6 @@ public class NastavnikController {
         	korisnik = korisnikService.getOne(nastavnik.getKorisnik().getId());
         	kdto = new KorisnikDTO(korisnik);
         }
-
-//        if (nastavnik == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-
         NastavnikDTO nastavnikDTO = new NastavnikDTO(nastavnik, kdto);
 
         return new ResponseEntity<NastavnikDTO>(nastavnikDTO, HttpStatus.OK);
@@ -65,11 +57,6 @@ public class NastavnikController {
         nastavnik.setPrezime(nastavnikDTO.getPrezime());
         nastavnik.setJmbg(nastavnikDTO.getJmbg());
         nastavnik.setMestoStanovanja(nastavnikDTO.getMestoStanovanja());
-        // dodavanje korisnickog naloga nastavniku
-//        KorisnickiNalog kn = korisnickiNalogService.getOne(nastavnikDTO.nalog.getId());
-//        if (kn != null) {
-//            nastavnik.setKorisnickiNalog(kn);
-//        }
 
         nastavnik = nastavnikService.create(nastavnik);
         return new ResponseEntity<NastavnikDTO>(new NastavnikDTO(nastavnik), HttpStatus.CREATED);
