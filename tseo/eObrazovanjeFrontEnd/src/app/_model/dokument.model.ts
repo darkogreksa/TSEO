@@ -5,13 +5,3 @@ export interface Dokument{
     data: Blob
 }
 
-
-export class Dokument {
-    
-    constructor(
-        id: number,
-        naziv: string,
-        tip: string
-    ){}
-
-}

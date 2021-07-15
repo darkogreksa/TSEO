@@ -56,6 +56,16 @@ export class DokumentaComponent implements OnInit {
     .subscribe(data => {
       saveAs(new Blob([data]), fileName);
     })
+    
+  }
+
+
+  delete(id) {
+    this.dokumentService.delete(id).subscribe(res => {
+      this.dokumenti = this.dokumenti;
+      this.ngOnInit()
+  
+    });
   }
 
 

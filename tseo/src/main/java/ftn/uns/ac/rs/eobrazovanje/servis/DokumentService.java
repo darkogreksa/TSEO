@@ -37,8 +37,8 @@ public class DokumentService {
         return dokumentRepository.save(dokumentStudent);
     }
 
-    public void deleteDokument(Long id){
-        dokumentRepository.deleteById(id);
+    public void deleteDokument(DokumentStudent d){
+        dokumentRepository.delete(d);
     }
 
     public DokumentStudent storeFile(MultipartFile file, Long id) throws IOException {

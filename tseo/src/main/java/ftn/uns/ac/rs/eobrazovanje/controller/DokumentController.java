@@ -76,14 +76,14 @@ public class DokumentController {
         return new ResponseEntity<DokumentDTO>(new DokumentDTO(dokument), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteDokument(@PathVariable("id") Long id){
        DokumentStudent dokument = dokumentService.getById(id);
        if(dokument == null){
            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
        }
 
-       dokumentService.deleteDokument(id);
+       dokumentService.deleteDokument(dokument);
        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 

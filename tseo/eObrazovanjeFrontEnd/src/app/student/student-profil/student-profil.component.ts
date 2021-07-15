@@ -8,6 +8,7 @@ import { HttpResponse } from '@angular/common/http';
 import { KorisnikService } from 'src/app/_service/korisnik.service';
 import { Korisnik } from 'src/app/_model/korisnik.model';
 import { DokumentiService } from 'src/app/_service/dokumenti.service';
+import { Dokument } from 'src/app/_model/dokument.model';
 
 @Component({
   selector: 'app-student-profil',
@@ -109,6 +110,7 @@ export class StudentProfilComponent implements OnInit {
     }
   }
 
+
   upload() {
     var data = new FormData();
     data.append('file', this.uploadFile.get('file').value);
@@ -124,5 +126,7 @@ export class StudentProfilComponent implements OnInit {
     }
       
     xhr.send(data);
+    location.reload();
+
   }
 }

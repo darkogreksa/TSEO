@@ -20,6 +20,10 @@ export class DokumentiService {
     return this.http.get(this.baseUrl + "/student/" + id);
   }
 
+  delete(id: number) {
+    return this.http.delete('/api/dokument/' + id);
+  }
+
   downloadFile(data) {
     const REQUEST_PARAMS = new HttpParams().set('fileName', data.fileName);
     const REQUEST_URL = this.baseUrl + "/download/" + data;
