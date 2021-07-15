@@ -59,7 +59,7 @@ export class EditNastavnikComponent implements OnInit {
     this.nastavnik.jmbg = jmbg;
     this.nastavnik.mestoStanovanja = mestoStanovanja;
     
-    this.nastavnikService.add(this.nastavnik)
+    this.nastavnikService.edit(this.nastavnik)
       .subscribe(() => this.router.navigateByUrl('nastavnik'));
   }
 
