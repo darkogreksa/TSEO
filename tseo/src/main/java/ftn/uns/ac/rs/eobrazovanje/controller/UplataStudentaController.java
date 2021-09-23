@@ -92,7 +92,7 @@ public class UplataStudentaController {
     }
 
 
-
+    // Uplacivanje novca studentu
     @PostMapping(value = "", consumes = "application/json")
     public ResponseEntity<UplataStudentaDTO> create (@RequestBody UplataStudentaDTO uplataDTO) {
         UplataStudenta uplata = new UplataStudenta();
@@ -110,6 +110,7 @@ public class UplataStudentaController {
         uplata = uplataService.create(uplata);
         return new ResponseEntity<UplataStudentaDTO>(new UplataStudentaDTO(uplata), HttpStatus.CREATED);
     }
+
 
     @PutMapping(consumes = "application/json")
     public ResponseEntity<UplataStudentaDTO> update(@RequestBody UplataStudentaDTO uplataDTO) {

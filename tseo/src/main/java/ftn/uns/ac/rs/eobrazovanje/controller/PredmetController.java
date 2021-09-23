@@ -101,7 +101,7 @@ public class PredmetController {
     	}
     }
 
-    // test metoda za isprobavanje predmetRepozitorijuma.. mozda nece trebati kasnije
+    // Nastavnik izvodi odredjene predmete
     @GetMapping(value = "/nastavnik/{nastavnikId}")
     public ResponseEntity<List<Predmet>> getAllKojeNastavnikIzvodi(@PathVariable("nastavnikId") Long id) {
         Nastavnik nastavnik = nastavnikService.getOne(id);

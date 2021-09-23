@@ -51,6 +51,8 @@ export class DokumentaComponent implements OnInit {
   
   downloadFile(fileName) {
     console.log("fileName : " + fileName);
+    // substr() vraca deo stringa
+    // lastIndexOf() vraca indeks elementa u listi ili -1 ako nije prisutan
     const extension = fileName.substr(fileName.lastIndexOf('.') + 1)
     this.dokumentService.downloadFile(fileName)
     .subscribe(data => {

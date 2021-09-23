@@ -70,6 +70,7 @@ public class IzlazakController {
 		return new ResponseEntity<List<IzlazakDTO>>(iDTO, HttpStatus.OK);
 	}
 
+	// Izlistavanje stavki za upis ocena za ispit i kolokvijum
 	@GetMapping(value = "/ispit/{idIspita}")
 	public ResponseEntity<List<IzlazakZaOcenjivanjeDTO>> getAllByIspit(@PathVariable("idIspita") Long idIspita){
 
@@ -92,7 +93,8 @@ public class IzlazakController {
 			return new ResponseEntity<IzlazakDTO>(new IzlazakDTO(i), HttpStatus.OK);
 		}
 	}
-	
+
+	// Prijava ispita
 	@PostMapping(value = "/{student}/{ispit}", consumes = "application/json")
 	public ResponseEntity<IzlazakDTO> create(@RequestBody IzlazakDTO iDTO, @PathVariable("student") Long s, @PathVariable("ispit") Long ispit){
 		IzlazakNaIspit i = new IzlazakNaIspit();

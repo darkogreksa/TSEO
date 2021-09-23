@@ -52,6 +52,8 @@ INSERT INTO izvedbe (pocetak, kraj, obrisan, predmet_id) VALUES ('2021-01-20', '
 INSERT INTO predavanja (obrisan, izvedba_id, nastavnik_id) VALUES (false, 1, 1);
 INSERT INTO predavanja (obrisan, izvedba_id, nastavnik_id) VALUES (false, 3, 1);
 INSERT INTO predavanja (obrisan, izvedba_id, nastavnik_id) VALUES (false, 2, 2);
+INSERT INTO predavanja (obrisan, izvedba_id, nastavnik_id) VALUES (false, 4, 1);
+INSERT INTO predavanja (obrisan, izvedba_id, nastavnik_id) VALUES (false, 5, 1);
 
 INSERT INTO ispitni_rokovi (naziv, datum_pocetka, datum_zavrsetka) VALUES ('januarski', '2021-01-20', '2021-02-10');
 INSERT INTO ispitni_rokovi (naziv, datum_pocetka, datum_zavrsetka) VALUES ('februarski', '2021-02-11', '2021-02-28');
@@ -75,14 +77,7 @@ INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (50, 
 INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (50, 6, false, 2, 3);
 INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (50, 6, false, 3, 3);
 INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (61, 7, true, 3, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 5, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 2, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 4, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 7, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 5, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 5, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 6, 1);
-INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (null, null, false, 2, 2);
+INSERT INTO izlasci (bodovi, ocena, polozio, ispit_id, student_id ) VALUES (85, 9, true, 1, 1);
 
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (3, 2);

@@ -71,6 +71,8 @@ export class PrijavaIspitaComponent implements OnInit {
       });
     });
   }
+
+  // Vec prijavljen ispit
   onChange() {
     this.selectedRok = this.selectRok.nativeElement.value;
     this.ispiti = [];
@@ -81,6 +83,7 @@ export class PrijavaIspitaComponent implements OnInit {
       }
     });
 
+    // Nepolozeni predmeti u listi ispita za prijavljivanje
     let tempIspiti = [];
     this.ispiti.forEach(i => {
       this.nepolozeniPredmeti.forEach(np => {
@@ -91,6 +94,7 @@ export class PrijavaIspitaComponent implements OnInit {
     });
     this.ispiti = tempIspiti;
 
+    // Prijavljivanje ispita
     this.izlasci.forEach(iz => {
       this.ispiti.forEach(is => {
         if (iz.ispit.id == is.id && iz.student.id == this.id) {

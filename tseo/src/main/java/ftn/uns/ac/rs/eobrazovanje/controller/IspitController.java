@@ -107,6 +107,7 @@ public class IspitController {
     	}
     }
 
+    // Ispiti koje odrzava odredjeni nastavnik
     @GetMapping(value = "/nastavnik/{nastavnikId}")
     public ResponseEntity<List<IspitZaNastavnikaDTO>> getAllByNastavnik(@PathVariable("nastavnikId") Long id) {
         Nastavnik nastavnik = nastavnikService.getOne(id);
@@ -123,6 +124,7 @@ public class IspitController {
         return new ResponseEntity<List<IspitZaNastavnikaDTO>>(ispitDTOs, HttpStatus.OK);
     }
 
+    // Nepregledani kolokvijumi za nastavnika / pregled dostupnih kolokvijuma za nastavnika
     @GetMapping(value = "/kolokvijum/nastavnik/{nastavnikId}")
     public ResponseEntity<List<IspitZaNastavnikaDTO>> getAllKolokvijumiByNastavnik(@PathVariable("nastavnikId") Long id) {
         Nastavnik nastavnik = nastavnikService.getOne(id);
@@ -139,6 +141,7 @@ public class IspitController {
         return new ResponseEntity<List<IspitZaNastavnikaDTO>>(ispitDTOs, HttpStatus.OK);
     }
 
+    // Nepregledani ispiti za nastavnika
     @GetMapping(value = "/ocenjivanje/nastavnik/{nastavnikId}")
     public ResponseEntity<List<IspitZaNastavnikaDTO>> getAllIspitiForGradingByNastavnik(@PathVariable("nastavnikId") Long nastavnikId){
         Nastavnik nastavnik = nastavnikService.getOne(nastavnikId);
@@ -150,7 +153,7 @@ public class IspitController {
         return new ResponseEntity<List<IspitZaNastavnikaDTO>>(ispiti, HttpStatus.OK);
     }
 
-    //dobavlja sve ispite za koje je potrebno oceniti radove (iz predmeta koje dati nastavnik izvodi)
+    //
     @GetMapping(value = "/ocenjivanje/nastavnik/{nastavnikId}/rok/{rokId}")
     public ResponseEntity<List<IspitZaOcenjivanjeDTO>> getAllIspitiForGradingByRokAndNastavnik(@PathVariable("nastavnikId") Long nastavnikId, @PathVariable("rokId") Long rokId){
         Nastavnik nastavnik = nastavnikService.getOne(nastavnikId);

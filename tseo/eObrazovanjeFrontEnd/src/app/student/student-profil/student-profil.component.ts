@@ -119,6 +119,7 @@ export class StudentProfilComponent implements OnInit {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/api/dokument/upload/" + this.id);
 
+    // The onload event occurs when an object has been loaded
     xhr.onload = function() {
         console.log(xhr.responseText);
         var response = JSON.parse(xhr.responseText);
@@ -126,6 +127,8 @@ export class StudentProfilComponent implements OnInit {
     }
       
     xhr.send(data);
+    //The reload() method is used to reload the current document
+    //The reload() method does the same as the reload button in your browser.
     location.reload();
 
   }

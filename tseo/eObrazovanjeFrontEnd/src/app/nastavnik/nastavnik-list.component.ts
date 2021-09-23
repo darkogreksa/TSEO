@@ -23,7 +23,7 @@ export class NastavnikListComponent implements OnInit {
     this.nastavnikService.getAll()
       .subscribe(nastavnici => this.nastavnici = nastavnici);
   }
-
+  // splice prvi element start, drugi element delete
   delete(id: number) {
     this.nastavnikService.delete(id).subscribe(() => {
       for (let i = 0; i < this.nastavnici.length; i++) {
